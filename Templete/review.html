@@ -1,0 +1,157 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review Answers</title>
+  <style>
+    /* Add styles similar to other pages */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Review Your Answers</h1>
+    <div id="review-container"></div>
+    <button onclick="goBack()">Back to Progress</button>
+  </div>
+
+  <script>
+    const questions = [
+      { question: "What will be the result of `!(5 > 3)`?", correct: "false", userAnswer: "true" },
+      // Add all questions and user's answers here
+    ];
+
+    const reviewContainer = document.getElementById("review-container");
+    questions.forEach((q, index) => {
+      const div = document.createElement("div");
+      div.innerHTML = `
+        <p><strong>Q${index + 1}:</strong> ${q.question}</p>
+        <p><strong>Your Answer:</strong> ${q.userAnswer}</p>
+        <p><strong>Correct Answer:</strong> ${q.correct}</p>
+        <hr>
+      `;
+      reviewContainer.appendChild(div);
+    });
+
+    function goBack() {
+      window.location.href = "{% url 'topic3' %}";
+    }
+  </script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review Answers</title>
+  <style>
+  /* Main background */
+body {
+  background: url('path-to-your-image.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Arial', sans-serif;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container styling for the quiz */
+.container {
+  background: rgba(0, 0, 0, 0.8); /* Dark transparent overlay */
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 700px;
+  margin: 50px auto;
+  box-shadow: 0 4px 15px rgb(246, 242, 242);
+}
+
+/* Question background */
+.question {
+  background: rgba(255, 255, 255, 0.1); /* Subtle transparent white */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+/* Correct answer background */
+.correct-answer {
+  background: rgba(34, 139, 34, 0.8); /* Forest green with transparency */
+  color: #ffffff;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+/* Buttons styling */
+button {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Text alignment */
+h1, p {
+  text-align: center;
+}
+.background-video {
+            position: fixed; /* Fix it to the screen */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Make sure video covers the entire screen */
+            z-index: -1; /* Place the video behind all content */
+        }
+
+
+  </style>
+</head>
+<body>
+  <video id="background-video" class="background-video" autoplay loop muted>
+    <source src="static/assets/TOPIC1-BG.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="container" align="center">
+    <h1>Review Your Answers</h1>
+    <div id="review-container" ></div>
+    <button onclick="goBack()">Back to Progress</button>
+  </div>
+
+  <script>
+    const questions = [
+      { question: "What will be the result of !(5 > 3)?", correct: "false", userAnswer: "true" },
+      { question: "What is the output of 2 + 2 * 2 in JavaScript?", correct: "6", userAnswer: "6" },
+      { question: "Which keyword is used to define a variable in Python?", correct: "def", userAnswer: "var" }
+    ];
+
+    const reviewContainer = document.getElementById("review-container");
+    questions.forEach((q, index) => {
+      const div = document.createElement("div");
+      div.innerHTML = `
+        <p><strong>Q${index + 1}:</strong> ${q.question}</p>
+        <p><strong>Your Answer:</strong> ${q.userAnswer}</p>
+        <p><strong>Correct Answer:</strong> ${q.correct}</p>
+        <hr>
+      `;
+      reviewContainer.appendChild(div);
+    });
+
+    function goBack() {
+      window.location.href = "{% url 'topic3' %}";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Map Button</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .map-button {
+      position: relative;
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+      background: linear-gradient(90deg, #ff7e5f, #feb47b);
+      border: none;
+      border-radius: 50px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .map-button:hover {
+      background: linear-gradient(90deg, #feb47b, #ff7e5f);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .map-button::before {
+      content: "🗺️"; /* Map emoji */
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+    }
+
+    .map-button:hover::before {
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(-50%);
+      }
+      50% {
+        transform: translateY(-60%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="map-button" onclick="redirectToMap()">Map</button>
+
+  <script>
+    function redirectToMap() {
+      window.location.href = "{% url 'map1' %}"; // Redirect to map.html
+    }
+  </script>
+</body>
+</html>

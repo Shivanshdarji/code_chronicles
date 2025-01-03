@@ -1,0 +1,106 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>introduction video</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay loop>
+        <source src="static\assets\welcome.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video and Audio Synchronization</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Video -->
+    <video id="background-video" autoplay muted>
+        <source src="static\assets\welcome4.mp4" type="video/mp4" aria-controls="">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Background Audio -->
+    <audio id="background-audio" loop>
+        <source src="static/assets/background-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+
+    <!-- JavaScript to Sync Video, Audio, and Redirect on Video End -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const video = document.getElementById('background-video');
+            const audio = document.getElementById('background-audio');
+
+            // When video plays, start the audio
+            video.addEventListener('play', () => {
+                audio.play();
+            });
+
+            // When video pauses, pause the audio
+            video.addEventListener('pause', () => {
+                audio.pause();
+            });
+
+            // When video ends, stop the audio and redirect to login page
+            video.addEventListener('ended', () => {
+                audio.pause();
+                audio.currentTime = 0; // Reset audio to the start
+                // Redirect to the Django login page using the URL name
+                window.location.href = "{% url 'student_login' %}";
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+nested . html
+

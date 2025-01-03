@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video and Audio Synchronization</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Video -->
+    <video id="background-video" autoplay loop>
+        <source src="static\assets\thanks.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- JavaScript to Handle Video Events -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const video = document.getElementById('background-video');
+
+            // Redirect when the video ends
+            video.addEventListener('ended', () => {
+                window.location.href = "{% url 'index2' %}";
+            });
+
+            // Skip video and redirect when the space bar is pressed
+            document.addEventListener('keydown', (event) => {
+                if (event.code === 'Space') {
+                    event.preventDefault(); // Prevent default space bar behavior (scrolling)
+                    video.pause(); // Pause the video
+                    // Redirect to the Django login page
+                    window.location.href = "{% url 'index2' %}";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

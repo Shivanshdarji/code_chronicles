@@ -1,0 +1,264 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progress Summary</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #1e1e2e, #3a3a5c);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      margin: 50px auto;
+      padding: 20px;
+      max-width: 600px;
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 10px;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+      text-align:center;
+    }
+
+    h1 {
+      color: #ffcc00;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+      margin: 15px 0;
+    }
+
+    button {
+      margin: 10px;
+      padding: 12px 25px;
+      font-size: 16px;
+      border: 2px solid #ffcc00;
+      border-radius: 5px;
+      background: transparent;
+      color: #ffcc00;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ffaa00;
+      color: #000;
+      transform: scale(1.1);
+    }
+
+
+    .background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <video id="background-video" class="background-video" autoplay loop muted>
+    <source src="static/assets/TOPIC1-BG.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="container">
+    <h1>Progress Summary</h1>
+    <p id="score-summary"></p>
+    <p>Would you like to review your answers or continue to the next topic?</p>
+    <button onclick="reviewAnswers()">Review Answers</button>
+    <button onclick="goToNextTopic()">Next Topic</button>
+  </div>
+  <div class="container">
+    <h2>LEADERBOARD</h2>
+    <table id="leaderboard-table" border="2" align="center">
+        
+            <tr>
+                <th>Rank </th> 
+                <th>Username  </th> 
+                <th>Score </th>
+            </tr> 
+            <tr>
+              <td>1</td>
+              <td>hh</td>
+              <td>2</td>
+            </tr>
+            
+      
+    </table>
+</div>
+
+  <script>
+    // Get query parameters
+    const params = new URLSearchParams(window.location.search);
+    const score = params.get("score");
+    const total = params.get("total");
+
+    // Display the score summary
+    const scoreSummary = document.getElementById("score-summary");
+    scoreSummary.textContent = `You scored ${score} out of ${total}!`;
+
+    // Navigation functions
+    function reviewAnswers() {
+      window.location.href = "{% url 'review' %}";
+    }
+
+    function goToNextTopic() {
+      window.location.href = "{% url 'review' %}";
+    }
+  </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progress Summary</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #4b79a1, #283e51);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      margin: 5px auto;
+      padding: 30px;
+      max-width: 600px;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+      text-align: center;
+      backdrop-filter: blur(5px);
+    }
+
+    h1 {
+      color: #ffcc00;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin: 20px 0;
+      line-height: 1.6;
+    }
+
+    button {
+      margin: 15px;
+      padding: 15px 35px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      background: #ffcc00;
+      color: #333;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    button:hover {
+      background-color: #ffaa00;
+      color: #000;
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    table {
+      margin: 30px auto;
+      width: 80%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 12px 20px;
+      border: 1px solid #ddd;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    th {
+      background-color: #ffcc00;
+      color: #333;
+    }
+
+    td {
+      background-color: #1e1e2e;
+    }
+
+    .background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.4;
+    }
+  </style>
+</head>
+<body>
+  <video id="background-video" class="background-video" autoplay loop muted>
+    <source src="static/assets/TOPIC1-BG.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="container">
+    <h1>Progress Summary</h1>
+    <p id="score-summary"></p>
+    <p>Would you like to review your answers or continue to the next topic?</p>
+    <button onclick="reviewAnswers()">Review Answers</button>
+    <button onclick="goToNextTopic()">Next Topic</button>
+  </div>
+  <div class="container">
+    <h2>LEADERBOARD</h2>
+    <table id="leaderboard-table">
+      <tr>
+        <th>Rank</th>
+        <th>Username</th>
+        <th>Score</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>hh</td>
+        <td>2</td>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    // Get query parameters
+    const params = new URLSearchParams(window.location.search);
+    const score = params.get("score");
+    const total = params.get("total");
+
+    // Display the score summary
+    const scoreSummary = document.getElementById("score-summary");
+    scoreSummary.textContent = `You scored ${score} out of ${total}!`;
+
+    // Navigation functions
+    function reviewAnswers() {
+      window.location.href = "{% url 'review' %}";
+    }
+
+    function goToNextTopic() {
+      window.location.href = "{% url 'topic2' %}";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Flat Buttons Examples</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f9f9f9;
+            overflow: hidden;
+        }
+
+        h1 {
+            margin-top: 10px;
+            font-size: 48px;
+            color: #fefefe;
+            z-index: 1; /* Ensure text is above the video */
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;  /* Arrange buttons in a column */
+            gap: 20px; /* Space between buttons */
+            width: 100%;
+            max-width: 300px;  /* Limit the width of buttons */
+            padding: 0 20px;
+            z-index: 1; /* Ensure buttons are above the video */
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            width: 100%; /* Ensure buttons fill the width of the container */
+            text-align: center; /* Center text inside the button */
+        }
+
+        .btn span {
+            margin-right: 10px;
+        }
+
+        .btn:before {
+            content: "➤";
+            position: absolute;
+            right: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .btn:hover:before {
+            transform: translateX(5px);
+        }
+        .btn span {
+    margin-right: 10px;
+    transition: transform 0.3s ease-in-out; /* Add transition for smooth scaling */
+}
+
+.btn:hover span {
+    transform: scale(1.1); /* Zoom effect on hover */
+}
+
+
+        /* Gradient Styles */
+        .btn.gradient1 {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+        }
+
+        .btn.gradient2 {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+        }
+
+        .btn.gradient3 {
+            background: linear-gradient(to right, #ff6a00, #ee0979);
+        }
+
+        .btn.gradient4 {
+            background: linear-gradient(to right, #43cea2, #185a9d);
+        }
+
+        .btn.gradient5 {
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+        }
+
+        .btn.gradient6 {
+            background: linear-gradient(to right, #f7971e, #ffd200);
+        }
+
+        .background-video {
+            position: fixed; /* Fix it to the screen */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Make sure video covers the entire screen */
+            z-index: -1; /* Place the video behind all content */
+        }
+
+        /* Button Hover Effects */
+        .btn:hover {
+            color: white;
+            border: 5px solid white;
+        }
+        .map-button {
+    position: absolute; /* Use absolute positioning */
+    top: 20px; /* Distance from the top */
+    right: 20px; /* Distance from the right */
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    border: none;
+    border-radius: 50px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.map-button:hover {
+    background: linear-gradient(90deg, #feb47b, #ff7e5f);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.map-button::before {
+    content: ""; /* Map emoji */
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.map-button:hover::before {
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(-50%);
+    }
+    50% {
+        transform: translateY(-60%);
+    }
+}
+
+    </style>
+</head>
+<body>
+    <video class="background-video" autoplay loop muted>
+        <source src="static/assets/TOPIC1-BG.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <h1>OPERATORS</h1>
+    <div class="button-container">
+        <a href="{% url 'arithmetic' %}" class="btn gradient1"><span>ARITHMETIC OPERATOR</span></a>
+        <a href="#" class="btn gradient2"><span>RELATIONAL OPERATOR</span></a>
+        <a href="#" class="btn gradient3"><span>BITWISE OPERATOR</span></a>
+        <a href="#" class="btn gradient4"><span>TERNARY OPERATOR</span></a>
+        <a href="#" class="btn gradient5"><span>ASSIGNMENT OPERATOR</span></a> 
+        <a href="{% url 'logical' %}" class="btn gradient5"><span>LOGICAL OPERATOR</span></a> 
+    </div>
+    <a href="{% url 'map' %}" class="map-button">MAP</a>
+</body>
+</html>

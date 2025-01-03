@@ -1,0 +1,423 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game-Themed Login Page</title>
+    <style>
+        /* Same styles as before */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        body {
+            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+            background-size: 300% 300%;
+            animation: gradientAnimation 8s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .login-container {
+            width: 400px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+        }
+
+        .login-container h1 {
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+            color: #ff4c60;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border: none;
+            border-radius: 25px;
+            background: #2a2a2a;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 25px;
+            background: #ff4c60;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .login-container button:hover {
+            background: #ff6f81;
+        }
+
+        .game-icon {
+            margin: 20px auto;
+            width: 100px;
+            height: 100px;
+            background: url('3d-icon-placeholder.png') no-repeat center center;
+            background-size: contain;
+            animation: rotateIcon 5s infinite linear;
+        }
+
+        @keyframes rotateIcon {
+            0% { transform: rotateY(0); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        .login-container a {
+            display: block;
+            margin-top: 20px;
+            color: #ff4c60;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .login-container a:hover {
+            color: #ff6f81;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="game-icon"></div>
+        
+        <h1>Welcome to CodeQuest</h1>
+        <form method="POST" action="student_login1" autocomplete="off"></form>
+        {% csrf_token %}
+            <input type="text" id="Username" name="Username" placeholder="Enter your username" required>
+            <input type="password"id="Password" name="Password" placeholder="Enter your password" required>
+            <button type="submit">Login</button>
+            
+        </form>
+      
+        <a   href="{% url 'Logintrans' %}">New here? Create an account</a>
+    </div>
+</body>
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game-Themed Login Page</title>
+    <style>
+        /* Same styles as before */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Background video styles */
+        .background-video {
+            position: fixed; /* Fix it to the screen */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Make sure video covers the entire screen */
+            z-index: -1; /* Place the video behind all content */
+        }
+
+        body {
+            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+            background-size: 300% 300%;
+            animation: gradientAnimation 8s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .login-container {
+            width: 400px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+        }
+
+        .login-container h1 {
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+            color: #ff4c60;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border: none;
+            border-radius: 25px;
+            background: #2a2a2a;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 25px;
+            background: #ff4c60;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .login-container button:hover {
+            background: #ff6f81;
+        }
+
+        .game-icon {
+            margin: 20px auto;
+            width: 100px;
+            height: 100px;
+            background: url('3d-icon-placeholder.png') no-repeat center center;
+            background-size: contain;
+            animation: rotateIcon 5s infinite linear;
+        }
+
+        @keyframes rotateIcon {
+            0% { transform: rotateY(0); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        .login-container a {
+            display: block;
+            margin-top: 20px;
+            color: #ff4c60;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .login-container a:hover {
+            color: #ff6f81;
+        }
+    </style>
+</head>
+<body>
+
+   
+    <video class="background-video" autoplay loop muted>
+        <source src="static/assets/welcome6.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="login-container">
+        <div class="game-icon"></div>
+        
+        <h1>Welcome to CodeCronicals</h1>
+        <form method="POST" action="student_login1" autocomplete="off">
+            {% csrf_token %}
+            <input type="text" id="Username" name="Username" placeholder="Enter your username" required>
+            <input type="password" id="Password" name="Password" placeholder="Enter your password" required>
+            <button type="submit">Login</button>
+        </form>
+        <a href="{% url 'Logintrans' %}">New here? Create an account</a>
+    </div>
+
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game-Themed Login Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Background video styles */
+        .background-video {
+            position: fixed; /* Fix it to the screen */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Make sure video covers the entire screen */
+            z-index: -1; /* Place the video behind all content */
+        }
+
+        body {
+            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+            background-size: 300% 300%;
+            animation: gradientAnimation 8s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .login-container {
+            width: 400px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            position: relative;  /* Relative positioning to control content */
+        }
+
+        .login-container h1 {
+            position: absolute;
+            top: 50px;  /* Adjust this value to place the text higher or lower */
+            left: 50%;
+            transform: translateX(-50%);  /* Center it horizontally */
+            font-size: 2.2rem;
+            color: #ff4c60;
+            margin: 0;  
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border: none;
+            border-radius: 25px;
+            background: #2a2a2a;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 25px;
+            background: #ff4c60;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .login-container button:hover {
+            background: #ff6f81;
+        }
+
+        .game-icon {
+            margin: 20px auto;
+            width: 100px;
+            height: 100px;
+            background: url('3d-icon-placeholder.png') no-repeat center center;
+            background-size: contain;
+            animation: rotateIcon 5s infinite linear;
+        }
+
+        @keyframes rotateIcon {
+            0% { transform: rotateY(0); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        .login-container a {
+            display: block;
+            margin-top: 20px;
+            color: #ff4c60;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .login-container a:hover {
+            color: #ff6f81;
+        }
+    </style>
+</head>
+<body>
+
+    <video class="background-video" autoplay loop muted>
+        <source src="static/assets/welcome6.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="login-container">
+        <div class="game-icon"></div>
+        
+        <h1>Welcome to CodeCronicals</h1>
+        <form method="POST" action="student_login1" autocomplete="off">
+            {% csrf_token %}
+            <input type="text" id="Username" name="Username" placeholder="Enter your username" required>
+            <input type="password" id="Password" name="Password" placeholder="Enter your password" required>
+            <button type="submit">Login</button>
+        </form>
+        <a href="{% url 'Logintrans' %}">New here? Create an account</a>
+    </div>
+
+</body>
+</html>

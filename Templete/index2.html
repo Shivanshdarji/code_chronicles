@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Types Quiz</title>
+  <style>
+    body {
+      font-family: 'Times New Roman', serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #1e1e2e, #3a3a5c);
+      color: #fff;
+    }
+
+    .container {
+      margin: 20px auto;
+      padding: 20px;
+      max-width: 600px;
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 10px;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+      animation: fadeIn 0.5s ease-in-out;
+      align-content: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #ff4500;
+      font-size: 2.5em;
+      text-shadow: 0 0 10px rgba(255, 69, 0, 0.8);
+    }
+
+    button {
+      margin: 10px;
+      padding: 12px 25px;
+      font-size: 16px;
+      border: 2px solid #ff4500;
+      border-radius: 5px;
+      background: transparent;
+      color: #ff4500;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff4500;
+      color: #000;
+      transform: scale(1.1);
+    }
+
+    textarea {
+    width: 90%;
+    height: 150px;
+    margin: 20px 0;
+    font-size: 14px;
+    font-family: monospace;
+    color: #ff4500;
+    background: #2a2a3e;
+    border: 2px solid #ff4500;
+    border-radius: 5px;
+}
+
+
+    .options button {
+      display: block;
+      margin: 15px auto;
+      padding: 12px;
+      font-size: 18px;
+      width: 80%;
+      border: 2px solid #ffcc00;
+      background-color: transparent;
+      color: #ffcc00;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .options button:hover {
+      background-color: #ffaa00;
+      color: #000;
+      transform: scale(1.1);
+    }
+
+    #feedback {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #ffa500;
+    }
+
+    .background-video {
+            position: fixed; /* Fix it to the screen */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Make sure video covers the entire screen */
+            z-index: -1; /* Place the video behind all content */
+        }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+    <video id="background-video" class="background-video" autoplay loop muted>
+        <source src="static/assets/TOPIC1-BG.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+  <div class="container">
+    <h1>Data Types Quiz</h1>
+    <div id="question-container" class="animated fadeIn">
+      <p id="question">Press "Generate Question" to start!</p>
+      <div id="options" class="options"></div>  
+      <div style="text-align: center;">
+      <textarea id="code-editor" placeholder="Write your code here..." style="display:none; margin: 10px auto;"></textarea>
+    </div>
+    <div style="text-align: center;">
+      <input type="text" id="answer" placeholder="Enter your answer" style="display:none; margin: 10px auto;">
+    </div>
+    <button id="check-answer">Check Answer</button>
+    <button id="generate-question">Generate Question</button>
+    <p id="feedback"></p>
+  </div>
+
+  <script>
+    let questionCounter = 0;
+    let score = 0;
+  
+    // Questions categorized
+    const mcqQuestions = [
+      {
+        question: "Which of the following is a floating-point data type in C?",
+        options: ["int", "float", "char", "bool"],
+        correct: "float"
+      },
+      {
+        question: "What is the size of an int data type in C (on most platforms)?",
+        options: ["2 bytes", "4 bytes", "8 bytes", "Depends on the compiler"],
+        correct: "4 bytes"
+      }
+    ];
+  
+    const fillInQuestions = [
+      {
+        question: "Fill in the blank: `float x = _______;`",
+        blank: "_______",
+        correct: "3.14"
+      },
+      {
+        question: "Write the data type to store single characters: _______",
+        blank: "_______",
+        correct: "char"
+      }
+    ];
+  
+    const codingProblems = [
+      {
+        question: "Write a C program to demonstrate the use of float data type.",
+        example: "// Example: Calculate area of a circle\n// Input: radius = 3\n// Output: Area = 28.27",
+        correct: "float area"
+      },
+      {
+        question: "Write a C program to display the size of various data types using sizeof().",
+        example: "// Output:\n// Size of int: 4 bytes\n// Size of char: 1 byte",
+        correct: "sizeof"
+      }
+    ];
+  
+    // Generate a new question based on the counter
+    function generateQuestion() {
+      const questionContainer = document.getElementById("question");
+      const optionsContainer = document.getElementById("options");
+      const codeEditor = document.getElementById("code-editor");
+      const answerInput = document.getElementById("answer");
+  
+      optionsContainer.innerHTML = "";
+      codeEditor.style.display = "none";
+      answerInput.style.display = "none";
+      document.getElementById("feedback").textContent = "";
+  
+      if (questionCounter < 2) {
+        // MCQ Question
+        const question = mcqQuestions[questionCounter];
+        questionContainer.textContent = question.question;
+        question.options.forEach(option => {
+          const button = document.createElement("button");
+          button.textContent = option;
+          button.onclick = () => checkMCQAnswer(option, question.correct);
+          optionsContainer.appendChild(button);
+        });
+      } else if (questionCounter < 4) {
+        // Fill-in-the-blank Question
+        const question = fillInQuestions[questionCounter - 2];
+        questionContainer.innerHTML = question.question.replace(question.blank, `<span class="blank">${question.blank}</span>`);
+        answerInput.style.display = "block";
+        answerInput.dataset.correct = question.correct;
+      } else if (questionCounter < 6) {
+        // Coding Problem
+        const question = codingProblems[questionCounter - 4];
+        questionContainer.textContent = `${question.question}\n\n${question.example}`;
+        codeEditor.style.display = "block";
+        codeEditor.dataset.correct = question.correct;
+      } else {
+        // Display Results and Redirect
+        const questionContainer = document.getElementById("question-container");
+        questionContainer.innerHTML = `
+          <h2>Challenge Completed!</h2>
+          <p>Your Score: ${score} out of 6</p>
+        `;
+        setTimeout(() => {
+          window.location.href = "{% url 'topic1' %}"; // Redirect to topic1.html
+        }, 3000); // Redirect after 3 seconds
+        return;
+      }
+  
+      questionCounter++;
+    }
+  
+    // Check MCQ answer
+    function checkMCQAnswer(selected, correct) {
+      const feedback = document.getElementById("feedback");
+      if (selected === correct) {
+        feedback.textContent = "Correct! 🎉";
+        feedback.style.color = "green";
+        feedback.style.fontWeight = "bold";
+        score++;
+      } else {
+        feedback.textContent = `Wrong! The correct answer is: ${correct}`;
+        feedback.style.color = "white";
+        feedback.style.fontWeight = "bold";
+        feedback.style.fontSize = "25px";
+      }
+    }
+  
+    // Check other answers
+    function checkAnswer() {
+      const answerInput = document.getElementById("answer");
+      const codeEditor = document.getElementById("code-editor");
+      const feedback = document.getElementById("feedback");
+  
+      if (answerInput.style.display !== "none") {
+        // Fill-in-the-blank validation
+        const userAnswer = answerInput.value.trim();
+        if (userAnswer === answerInput.dataset.correct) {
+          feedback.textContent = "Correct! 🎉";
+          feedback.style.color = "green";
+          feedback.style.fontWeight = "bold";
+          score++;
+        } else {
+          feedback.textContent = `Wrong! Correct answer is: ${answerInput.dataset.correct}`;
+          feedback.style.color = "red";
+        }
+      } else if (codeEditor.style.display !== "none") {
+        // Coding problem validation
+        const userCode = codeEditor.value.trim();
+        if (userCode.includes(codeEditor.dataset.correct)) {
+          feedback.textContent = "Well done! Your code is correct. 🎉";
+          feedback.style.color = "green";
+          score++;
+        } else {
+          feedback.textContent = `Incorrect. Hint: Use "${codeEditor.dataset.correct}" in your code.`;
+          feedback.style.color = "red";
+        }
+      }
+    }
+  
+    // Event listeners
+    document.getElementById("generate-question").addEventListener("click", generateQuestion);
+    document.getElementById("check-answer").addEventListener("click", checkAnswer);
+  </script>
+  
+</body>
+</html>
